@@ -8,6 +8,8 @@ function getPlayerStatus() {
 }
 
 function getDeviceData() {
+	global $settings;
+	
 	// temperature
 	$f = fopen("/sys/class/thermal/thermal_zone0/temp","r");
 	$temp = fgets($f);
@@ -23,7 +25,8 @@ function getDeviceData() {
 		'ipAddr' => $_SERVER['SERVER_ADDR'],
 		'variant' => $settings['Variant'],
 		'fppMode' => $settings['fppMode'],
-		'time' => time()
+		'time' => time(),
+		'baseURL' => $baseUrl
 	);
 	
 	return $response;
