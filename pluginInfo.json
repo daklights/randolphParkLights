@@ -1,0 +1,18 @@
+{
+	"repoName": "randolph-park-lights",
+	"name": "Randolph Park Lights",
+	"author": "DAK Lights",
+	"description": "Command/Control/Status of Randolph Park Lights",
+	"homeURL": "https://github.com/daklights/randolph-park-lights",
+	"srcURL": "https://github.com/daklights/randolph-park-lights.git",
+	"bugURL": "https://github.com/daklights/randolph-park-lights/issues",
+	"versions": [
+		{
+			"minFPPVersion": "5.0",
+			"maxFPPVersion": "0",
+			"branch": "master",
+			"allowUpdates": 1,
+			"sha": ""
+		}
+	]
+}
