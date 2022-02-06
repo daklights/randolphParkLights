@@ -19,18 +19,6 @@
 	//print_r($GLOBALS);
 	//echo "</pre>";
 	
-	$url = "http://127.0.0.1/api/fppd/status";
-	$options = array(
-		'http' => array(
-			'method' => 'GET'
-		)
-	);	
-	$context = stream_context_create($options);	
-	$result = file_get_contents($url, false, $context);
-	
-	echo "local result -----<br />";
-	echo $result . "<br /><br />";
-	
 	$url = $GLOBALS['pluginBaseUrl'] . "index.php";
 	$data = getDeviceData();
 	$options = array(
@@ -41,12 +29,6 @@
 	);	
 	$context = stream_context_create($options);	
 	$result = file_get_contents($url, false, $context);
-	$error = error_get_last();
-	
-	echo "remote result -----<br />";
-	echo $result . "<br /><br />";
-	echo "Error:<pre>";
-	print_r($error);
-	echo "</pre><br /><br />";
+	echo $result;
 
 ?>
