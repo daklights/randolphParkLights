@@ -7,10 +7,16 @@
 	print_r($r);
 	echo "</pre>";
 	
+	//echo "<br /><br />";
+	
+	//echo "<pre>";
+	//print_r($settings);
+	//echo "</pre>";
+	
 	echo "<br /><br />";
 	
 	echo "<pre>";
-	print_r($settings);
+	print_r($GLOBALS);
 	echo "</pre>";
 	
 	$url = $GLOBALS['pluginBaseUrl'];
