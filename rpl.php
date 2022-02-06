@@ -23,13 +23,25 @@
 	$data = getDeviceData();
 	$options = array(
 		'http' => array(
-			'method'  => 'POST',
+			'method' => 'POST',
 			'content' => json_encode($data),
-			'header'=>  "Content-Type: application/json; charset=UTF-8\r\n" .
+			'header' => "Content-Type: application/json; charset=UTF-8\r\n" .
 						"Accept: application/json\r\n"
 			)
-	);
+	);	
+	echo "<pre>";
+	print_r($data);
+	echo "</pre><br /><br />";
+	
+	echo "<pre>";
+	print_r($options);
+	echo "</pre><br /><br />";
+	
 	$context = stream_context_create($options);
+	echo "<pre>";
+	print_r($context);
+	echo "</pre><br /><br />";
+	
 	$result = file_get_contents($url, false, $context);
 	
 	echo "result -----<br />";
