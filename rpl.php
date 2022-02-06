@@ -6,16 +6,6 @@
 	echo "<pre>";
 	print_r($r);
 	echo "</pre>";
-
-	$ipAddr = "0.0.0.0";
-	exec("/sbin/ifconfig eth0 | grep 'inet '", $resultArray);
-	$ipLine = explode(' ',trim($resultArray[0]));
-	$ipAddr = $ipLine[1];
-	echo "IP Address: " . $ipAddr . "<br /><br /><pre>";
-	print_r($resultArray);
-	echo " ----- ";
-	print_r($ipLine);
-	echo "</pre><br /><br />";
 	
 	$url = $GLOBALS['pluginBaseUrl'] . "index.php";
 	$data = getDeviceData();
