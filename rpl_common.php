@@ -16,7 +16,7 @@
 		$serial = substr($output, (strpos($output, 'Serial'))+9, 17);
 		
 		$response = array(
-			'tempC' => $temp,
+			'tempC' => trim($temp),
 			'serial' => $serial,
 			'ipAddr' => $_SERVER['SERVER_ADDR'],
 			'variant' => $settings['Variant'],
