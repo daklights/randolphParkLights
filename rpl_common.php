@@ -18,7 +18,7 @@
 		$response = array(
 			'tempC' => trim($temp),
 			'serial' => trim($serial),
-			'ipAddr' => '192.168.0.98',
+			'ipAddr' => '192.168.0.0',
 			'variant' => $settings['Variant'],
 			'fppMode' => $settings['fppMode'],
 			'time' => time()
