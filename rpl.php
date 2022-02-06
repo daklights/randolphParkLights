@@ -2,10 +2,10 @@
 
 	include_once "rpl_common.php";
 	
-	$r = getDeviceData();	
-	echo "<pre>";
-	print_r($r);
-	echo "</pre>";
+	//$r = getDeviceData();	
+	//echo "<pre>";
+	//print_r($r);
+	//echo "</pre>";
 	
 	//echo "<br /><br />";
 	
@@ -24,10 +24,8 @@
 	$options = array(
 		'http' => array(
 			'method' => 'POST',
-			'content' => json_encode($data),
-			'header' => "Content-Type: application/json; charset=UTF-8\r\n" .
-						"Accept: application/json\r\n"
-			)
+			'content' => json_encode($data)
+		)
 	);	
 	echo "<pre>";
 	print_r($data);
@@ -42,9 +40,8 @@
 	echo "</pre><br /><br />";
 	
 	$context = stream_context_create($options);
-	echo "<pre>";
-	print_r($context);
-	echo "</pre><br /><br />";
+	var_dump($context);
+	echo "<br /><br />";
 	
 	$result = file_get_contents($url, false, $context);
 	
