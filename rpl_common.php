@@ -17,7 +17,7 @@
 		
 		$response = array(
 			'tempC' => trim($temp),
-			'serial' => $serial,
+			'serial' => trim($serial),
 			'ipAddr' => $_SERVER['SERVER_ADDR'],
 			'variant' => $settings['Variant'],
 			'fppMode' => $settings['fppMode'],
