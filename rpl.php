@@ -37,6 +37,10 @@
 	print_r($options);
 	echo "</pre><br /><br />";
 	
+	echo "<pre>";
+	print_r($url);
+	echo "</pre><br /><br />";
+	
 	$context = stream_context_create($options);
 	echo "<pre>";
 	print_r($context);
