@@ -13,11 +13,11 @@
 	//print_r($settings);
 	//echo "</pre>";
 	
-	echo "<br /><br />";
+	//echo "<br /><br />";
 	
-	echo "<pre>";
-	print_r($GLOBALS);
-	echo "</pre>";
+	//echo "<pre>";
+	//print_r($GLOBALS);
+	//echo "</pre>";
 	
 	$url = $GLOBALS['pluginBaseUrl'] . "index.php";
 	$data = getDeviceData();
