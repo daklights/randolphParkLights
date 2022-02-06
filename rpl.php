@@ -9,7 +9,7 @@
 
 	$ipAddr = "0.0.0.0";
 	exec("/sbin/ifconfig eth0 | grep 'inet '", $resultArray);
-	$ipLine = explode(' ',$resultArray[0]);
+	$ipLine = explode(' ',trim($resultArray[0]));
 	$ipAddr = $ipLine[1];
 	echo "IP Address: " . $ipAddr . "<br /><br /><pre>";
 	print_r($resultArray);
