@@ -2,10 +2,10 @@
 
 	include_once "rpl_common.php";
 	
-	//$r = getDeviceData();	
-	//echo "<pre>";
-	//print_r($r);
-	//echo "</pre>";
+	$r = getDeviceData();	
+	echo "<pre>";
+	print_r($r);
+	echo "</pre>";
 	
 	//echo "<br /><br />";
 	
@@ -19,6 +19,18 @@
 	//print_r($GLOBALS);
 	//echo "</pre>";
 	
+	$url = "http://127.0.0.1/api/fppd/status";
+	$options = array(
+		'http' => array(
+			'method' => 'GET'
+		)
+	);	
+	$context = stream_context_create($options);	
+	$result = file_get_contents($url, false, $context);
+	
+	echo "local result -----<br />";
+	echo $result . "<br /><br />";
+	
 	$url = $GLOBALS['pluginBaseUrl'] . "index.php";
 	$data = getDeviceData();
 	$options = array(
@@ -27,25 +39,10 @@
 			'content' => json_encode($data)
 		)
 	);	
-	echo "<pre>";
-	print_r($data);
-	echo "</pre><br /><br />";
-	
-	echo "<pre>";
-	print_r($options);
-	echo "</pre><br /><br />";
-	
-	echo "<pre>";
-	print_r($url);
-	echo "</pre><br /><br />";
-	
-	$context = stream_context_create($options);
-	var_dump($context);
-	echo "<br /><br />";
-	
+	$context = stream_context_create($options);	
 	$result = file_get_contents($url, false, $context);
 	
-	echo "result -----<br />";
+	echo "remote result -----<br />";
 	echo $result . "<br /><br />";
 
 ?>
