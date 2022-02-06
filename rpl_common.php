@@ -1,7 +1,6 @@
 <?php
 
 include_once "/opt/fpp/www/common.php";
-$baseUrl = "https://daklights.com/api/";
 
 function getPlayerStatus() {
 	return $settings['fppMode'];
@@ -25,8 +24,7 @@ function getDeviceData() {
 		'ipAddr' => $_SERVER['SERVER_ADDR'],
 		'variant' => $settings['Variant'],
 		'fppMode' => $settings['fppMode'],
-		'time' => time(),
-		'baseURL' => $baseUrl
+		'time' => time()
 	);
 	
 	return $response;
