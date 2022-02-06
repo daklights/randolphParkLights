@@ -41,8 +41,12 @@
 	);	
 	$context = stream_context_create($options);	
 	$result = file_get_contents($url, false, $context);
+	$error = error_get_last();
 	
 	echo "remote result -----<br />";
 	echo $result . "<br /><br />";
+	echo "Error:<pre>";
+	print_r($error);
+	echo "</pre><br /><br />";
 
 ?>
