@@ -11,7 +11,11 @@
 	exec("/sbin/ifconfig eth0 | grep 'inet '", $resultArray);
 	$ipLine = explode(' ',$resultArray[1]);
 	$ipAddr = $ipLine[1];
-	echo $ipAddr . "<br /><br />";
+	echo "IP Address: " . $ipAddr . "<br /><br /><pre>";
+	print_r($resultArray);
+	echo " ----- ";
+	print_r($ipLine);
+	echo "</pre><br /><br />";
 	
 	$url = $GLOBALS['pluginBaseUrl'] . "index.php";
 	$data = getDeviceData();
