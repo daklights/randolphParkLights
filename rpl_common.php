@@ -1,7 +1,7 @@
 <?php
 
 	include_once "/opt/fpp/www/common.php";
-	$pluginBaseUrl = "https://daklights.com/api/";
+	$pluginBaseUrl = "http://daklights.com/api/";
 
 	function getDeviceData() {
 		global $settings;
