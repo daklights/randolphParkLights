@@ -19,7 +19,7 @@
 	print_r($GLOBALS);
 	echo "</pre>";
 	
-	$url = $GLOBALS['pluginBaseUrl'];
+	$url = $GLOBALS['pluginBaseUrl'] . "index.php";
 	$data = getDeviceData();
 	$options = array(
 		'http' => array(
