@@ -12,9 +12,9 @@
 	print_r($r);
 	echo "</pre><br /><hr /><br />";
 	
-	echo "<pre>";
-	print_r($settings);
-	echo "</pre><br /><hr /><br />";
+	//echo "<pre>";
+	//print_r($settings);
+	//echo "</pre><br /><hr /><br />";
 	
 	$t = getCurrentPlayingSequenceName();
 	echo $t . "<br /><hr /><br />";
