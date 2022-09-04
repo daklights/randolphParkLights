@@ -2,7 +2,11 @@
 
 	include_once "/opt/fpp/www/common.php";
 	$pluginBaseUrl = "https://daklights.com/api/";
-	$logFile = $settings['logDirectory']."/rpl.log";
+	$pluginName = basename(dirname(__FILE__));
+	$pluginPath = $settings['pluginDirectory']."/".$pluginName."/";
+	$logFile = $settings['logDirectory']."/".$pluginName.".log";
+	$pluginConfigFile = $settings['configDirectory'] . "/plugin." .$pluginName;
+	$pluginSettings = parse_ini_file($pluginConfigFile);
 
 	function getDeviceData() {
 		
@@ -15,16 +19,23 @@
 		$output = shell_exec('cat /proc/cpuinfo');
 		$serial = substr($output, (strpos($output, 'Serial'))+9, 17);
 		
-		// ip address
+		// eth0 ip address
 		$ipAddr = "0.0.0.0";
 		exec("/sbin/ifconfig eth0 | grep 'inet '", $resultArray);
 		$ipLine = explode(' ',trim($resultArray[0]));
-		$ipAddr = $ipLine[1];
+		$eth0Addr = $ipLine[1];
+		
+		// eth0 ip address
+		$ipAddr = "0.0.0.0";
+		exec("/sbin/ifconfig wlan0 | grep 'inet '", $resultArray);
+		$ipLine = explode(' ',trim($resultArray[0]));
+		$wlan0Addr = $ipLine[1];
 		
 		$response = array(
 			'tempC' => trim($temp),
 			'serial' => trim($serial),
-			'ipAddr' => trim($ipAddr),
+			'eth0Addr' => trim($eth0Addr),
+			'wlan0Addr' => trim($wlan0Addr),
 			'time' => time()
 		);
 		
@@ -52,6 +63,13 @@
 		$logWrite= fopen($logFile, "a") or die("Unable to open file!");
 		fwrite($logWrite, date('Y-m-d h:i:s A',time()).": ".$data."\n");
 		fclose($logWrite);
+		
+	}
+	
+	function getCurrentPlayingSequenceName() {
+		$ds = getDeviceStatus();
+		$j = json_decode($ds);
+		return $j['current_sequence'];
 	}
 
 ?>
