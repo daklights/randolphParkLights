@@ -10,7 +10,7 @@
 		$options = array(
 			'http' => array(
 				'method'  => 'POST',
-				'content' => json_encode($data),
+				'content' => $data,
 				'header'=>  "Content-Type: application/json; charset=UTF-8\r\n" .
 							"Accept: application/json\r\n"
 				)
