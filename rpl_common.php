@@ -3,7 +3,6 @@
 	$pluginBaseUrl = "https://daklights.com/api/";
 
 	function getDeviceData() {
-		global $settings;
 		
 		// temperature
 		$f = fopen("/sys/class/thermal/thermal_zone0/temp","r");
