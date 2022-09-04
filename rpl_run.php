@@ -1,7 +1,5 @@
 <?php
 
-	logEntry("Here");
-
 	include_once "/home/fpp/media/plugins/randolphParkLights/rpl_common.php";
 	
 	$doLoop = true;
