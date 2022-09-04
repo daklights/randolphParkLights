@@ -16,7 +16,9 @@
 	//print_r($settings);
 	//echo "</pre><br /><hr /><br />";
 	
-	$t = getCurrentPlayingSequenceName();
-	echo $t . "<br /><hr /><br />";
+	$d = getCurrentPlayingData();
+	echo "<pre>";
+	print_r($d);
+	echo "</pre><br /><hr /><br />";
 
 ?>

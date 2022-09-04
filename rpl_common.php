@@ -50,15 +50,11 @@
 			)
 		);
 		$context = stream_context_create( $options );
-		$result = file_get_contents( $url, false, $context );
-		
-		return $result;
-	}
+		$result = file_get_contents( $url, false, $context );		
+		return $result;	}
 	
 	function logEntry($data) {
-
 		global $logFile;
-
 		$data = $_SERVER['PHP_SELF']." : ".$data;		
 		$logWrite= fopen($logFile, "a") or die("Unable to open file!");
 		fwrite($logWrite, date('Y-m-d h:i:s A',time()).": ".$data."\n");
@@ -66,13 +62,16 @@
 		
 	}
 	
-	function getCurrentPlayingSequenceName() {
+	function getCurrentPlayingData() {
 		$ds = getDeviceStatus();
 		$j = json_decode($ds,true);
-		echo "=====<br /><pre>";
-		print_r($j);
-		echo "</pre>=====<br /><hr /><br />";
-		return $j['current_sequence'];
+		$response = array(
+			'sequenceName' => trim($j['current_sequence']),
+			'secondsElapsed' => trim($j['seconds_elapsed']),
+			'secondsRemaining' => trim($j['seconds_remaining']),
+			'time' => time()
+		);
+		return json_encode($response);
 	}
 
 ?>
