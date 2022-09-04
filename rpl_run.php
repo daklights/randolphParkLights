@@ -10,8 +10,8 @@
 		$pluginSettings = parse_ini_file($pluginConfigFile);
 		$url = $GLOBALS['pluginBaseUrl'];
 		$deviceData = getDeviceData();
-		$playingData = getCurrentPlayingData();
-		$combined = json_encode(array_merge(json_decode($deviceData,true),json_decode($playingData,true)));
+		$playingData = json_decode(getCurrentPlayingData(),true);
+		$combined = json_encode(array_merge(json_decode($deviceData,true),$playingData));
 		$reportedSequenceName = $pluginSettings['reportedSequenceName'];
 		
 		if ($reportedSequenceName != $playingData['sequenceName']) {
