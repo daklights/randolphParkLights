@@ -2,7 +2,7 @@
 
 	include_once "/opt/fpp/www/common.php";
 	$pluginBaseUrl = "https://daklights.com/api/";
-	$logFile = $settings['logDirectory']."/".$pluginName.".log";
+	$logFile = $settings['logDirectory']."/rpl.log";
 
 	function getDeviceData() {
 		

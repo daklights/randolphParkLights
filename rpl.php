@@ -10,6 +10,10 @@
 	$r = getDeviceStatus();
 	echo "<pre>";
 	print_r($r);
-	echo "</pre>";
+	echo "</pre><br /><hr /><br />";
+	
+	echo "<pre>";
+	print_r($settings);
+	echo "</pre><br /><hr /><br />";
 
 ?>
