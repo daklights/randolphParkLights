@@ -1,6 +1,5 @@
 <?php
 
-	include_once "/opt/fpp/www/common.php";
 	$pluginBaseUrl = "https://daklights.com/api/";
 
 	function getDeviceData() {
@@ -25,12 +24,10 @@
 			'tempC' => trim($temp),
 			'serial' => trim($serial),
 			'ipAddr' => trim($ipAddr),
-			'variant' => $settings['Variant'],
-			'fppMode' => $settings['fppMode'],
 			'time' => time()
 		);
 		
-		return $response;
+		return json_encode($response);
 	}
 	
 	function getDeviceStatus() {
