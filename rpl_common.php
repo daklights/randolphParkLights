@@ -68,7 +68,7 @@
 	
 	function getCurrentPlayingSequenceName() {
 		$ds = getDeviceStatus();
-		$j = json_decode($ds);
+		$j = json_decode($ds,true);
 		echo "=====<br /><pre>";
 		print_r($j);
 		echo "</pre>=====<br /><hr /><br />";
