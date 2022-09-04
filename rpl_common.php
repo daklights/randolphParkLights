@@ -20,16 +20,16 @@
 		$serial = substr($output, (strpos($output, 'Serial'))+9, 17);
 		
 		// eth0 ip address
-		$ipAddr = "0.0.0.0";
-		exec("/sbin/ifconfig eth0 | grep 'inet '", $resultArray);
-		$ipLine = explode(' ',trim($resultArray[0]));
-		$eth0Addr = $ipLine[1];
+		$eth0Addr = "0.0.0.0";
+		exec("/sbin/ifconfig eth0 | grep 'inet '", $resultArrayE);
+		$ipLineE = explode(' ',trim($resultArrayE[0]));
+		$eth0Addr = $ipLineE[1];
 		
 		// eth0 ip address
-		$ipAddr = "0.0.0.0";
-		exec("/sbin/ifconfig wlan0 | grep 'inet '", $resultArray);
-		$ipLine = explode(' ',trim($resultArray[0]));
-		$wlan0Addr = $ipLine[1];
+		$wlan0Addr = "0.0.0.0";
+		exec("/sbin/ifconfig wlan0 | grep 'inet '", $resultArrayW);
+		$ipLineW = explode(' ',trim($resultArrayW[0]));
+		$wlan0Addr = $ipLineW[1];
 		
 		$response = array(
 			'tempC' => trim($temp),
