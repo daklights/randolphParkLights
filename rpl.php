@@ -2,23 +2,12 @@
 
 	include_once "rpl_common.php";
 	
-	$r = getDeviceData();
-	echo "<pre>";
-	print_r($r);
-	echo "</pre><br /><hr /><br />";
+	$deviceData = getDeviceData();
+	$playingData = getCurrentPlayingData();
+	$combined = json_encode(array_merge(json_decode($deviceData,true),json_decode($playingData,true)));
 	
-	$r = getDeviceStatus();
 	echo "<pre>";
-	print_r($r);
-	echo "</pre><br /><hr /><br />";
-	
-	//echo "<pre>";
-	//print_r($settings);
-	//echo "</pre><br /><hr /><br />";
-	
-	$d = getCurrentPlayingData();
-	echo "<pre>";
-	print_r($d);
+	print_r($combined);
 	echo "</pre><br /><hr /><br />";
 
 ?>
