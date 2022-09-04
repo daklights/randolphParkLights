@@ -27,7 +27,7 @@
 			);
 			$context = stream_context_create($options);
 			$result = file_get_contents($url, false, $context);
-			if (strpos($result,'SUCCESS') === true) {
+			if (stripos($result,'SUCCESS') !== false) {
 				// remote success
 				WriteSettingToFile("reportedSequenceName",$playingData['sequenceName'],$pluginName);
 				$sleepDuration = 5;
