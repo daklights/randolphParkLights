@@ -32,5 +32,18 @@
 		
 		return $response;
 	}
+	
+	function getDeviceStatus() {
+		$url = "http://127.0.0.1/api/fppd/status";
+		$options = array(
+			'http' => array(
+				'method'  => 'GET'
+			)
+		);
+		$context = stream_context_create( $options );
+		$result = file_get_contents( $url, false, $context );
+		
+		return $result;
+	}
 
 ?>

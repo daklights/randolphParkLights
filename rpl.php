@@ -2,7 +2,12 @@
 
 	include_once "rpl_common.php";
 	
-	$r = getDeviceData();	
+	$r = getDeviceData();
+	echo "<pre>";
+	print_r($r);
+	echo "</pre><br /><hr /><br />";
+	
+	$r = getDeviceStatus();
 	echo "<pre>";
 	print_r($r);
 	echo "</pre>";
