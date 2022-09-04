@@ -5,10 +5,11 @@
 	$doLoop = true;
 	logEntry("Randolph Park Lights Initializing...");
 	
+	$url = $GLOBALS['pluginBaseUrl'];
+	logEntry("Base Url: " . $url);
+	
 	while ($doLoop) {
 		$pluginSettings = parse_ini_file($pluginConfigFile);
-		$url = $GLOBALS['pluginBaseUrl'];
-		logEntry("Base Url: " . $url);
 		$deviceData = getDeviceData();
 		$playingData = json_decode(getCurrentPlayingData(),true);
 		$combined = json_encode(array_merge(json_decode($deviceData,true),$playingData));
