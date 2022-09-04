@@ -1,6 +1,8 @@
 <?php
 
+	include_once "/opt/fpp/www/common.php";
 	$pluginBaseUrl = "https://daklights.com/api/";
+	$logFile = $settings['logDirectory']."/".$pluginName.".log";
 
 	function getDeviceData() {
 		
@@ -40,6 +42,16 @@
 		$result = file_get_contents( $url, false, $context );
 		
 		return $result;
+	}
+	
+	function logEntry($data) {
+
+		global $logFile;
+
+		$data = $_SERVER['PHP_SELF']." : ".$data;		
+		$logWrite= fopen($logFile, "a") or die("Unable to open file!");
+		fwrite($logWrite, date('Y-m-d h:i:s A',time()).": ".$data."\n");
+		fclose($logWrite);
 	}
 
 ?>
