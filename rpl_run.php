@@ -4,11 +4,11 @@
 	
 	$doLoop = true;
 	logEntry("Randolph Park Lights Initializing...");
-	logEntry("Base Url: " . $url);
 	
 	while ($doLoop) {
 		$pluginSettings = parse_ini_file($pluginConfigFile);
 		$url = $GLOBALS['pluginBaseUrl'];
+		logEntry("Base Url: " . $url);
 		$deviceData = getDeviceData();
 		$playingData = json_decode(getCurrentPlayingData(),true);
 		$combined = json_encode(array_merge(json_decode($deviceData,true),$playingData));
@@ -30,16 +30,15 @@
 			if (stripos($result,'SUCCESS') !== false) {
 				// remote success
 				WriteSettingToFile("reportedSequenceName",$playingData['sequenceName'],$pluginName);
-				$sleepDuration = 5;
-				logEntry("Remote Save Success");
+				$sleepDuration = 2;
 			} else {
 				// remote error
-				$sleepDuration = 2;
-				logEntry("Remote Save Error: " . $result);
+				$sleepDuration = 1;
 			}
+			logEntry("Remote Save: " . $result);
 		} else {
 			// song has not changed
-			$sleepDuration = 5;
+			$sleepDuration = 2;
 		}	
 		
 		sleep($sleepDuration);
