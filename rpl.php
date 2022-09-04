@@ -15,5 +15,7 @@
 	echo "<pre>";
 	print_r($settings);
 	echo "</pre><br /><hr /><br />";
+	
+	logEntry("Display Page Hit");
 
 ?>
