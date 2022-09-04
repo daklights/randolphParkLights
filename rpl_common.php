@@ -71,7 +71,7 @@
 		$j = json_decode($ds);
 		echo "=====<br /><pre>";
 		print_r($j);
-		echo "</pre>=====<br /><hr /><br />"
+		echo "</pre>=====<br /><hr /><br />";
 		return $j['current_sequence'];
 	}
 
