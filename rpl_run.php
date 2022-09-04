@@ -35,7 +35,7 @@
 			} else {
 				// remote error
 				$sleepDuration = 2;
-				logEntry("Remote Save Error");
+				logEntry("Remote Save Error: " . $result);
 			}
 		} else {
 			// song has not changed
