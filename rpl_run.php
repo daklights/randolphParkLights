@@ -18,13 +18,13 @@
 		if ($reportedSequenceName != $playingData['sequenceName']) {
 			// song has changed
 			logEntry("New Song Detected: " . $playingData['sequenceName']);
-			$options = array(
-				'http' => array(
-					'method'  => 'POST',
+			$options = array (
+				'http' => array (
+					'method' => 'POST',
 					'content' => $combined,
-					'header'=>  "Content-Type: application/json; charset=UTF-8\r\n" .
+					'header' => "Content-Type: application/json; charset=UTF-8\r\n" .
 								"Accept: application/json\r\n"
-					)
+				)
 			);
 			$context = stream_context_create($options);
 			$result = file_get_contents($url, false, $context);
