@@ -4,11 +4,11 @@
 	
 	$deviceData = getDeviceData();
 	$playingData = getCurrentPlayingData();
-	$combined = json_encode(array_merge(json_decode($deviceData,true),json_decode($playingData,true)));
+	$combined = array_merge(json_decode($deviceData,true),json_decode($playingData,true));
 	
 	echo "Randolph Park Lights Data Sync<br /><br />";
 	
-	echo "Temp: " . round($combined['tempC'],2) . "<br />";
+	echo "Temp: " . round(((($combined['tempC']/1000)*(9/5))+32),2) . "<br />";
 	echo "Serial: " . $combined['serial'] . "<br />";
 	echo "Eth0 Address: " . $combined['eth0Addr'] . "<br />";
 	echo "Wlan0 Address: " . $combined['wlan0Addr'] . "<br /><br />";
