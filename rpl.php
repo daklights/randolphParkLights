@@ -6,8 +6,16 @@
 	$playingData = getCurrentPlayingData();
 	$combined = json_encode(array_merge(json_decode($deviceData,true),json_decode($playingData,true)));
 	
-	echo "<pre>";
-	print_r($combined);
-	echo "</pre><br /><hr /><br />";
+	echo "Randolph Park Lights Data Sync<br /><br />";
+	
+	echo "Temp: " . round($combined['tempC'],2) . "<br />";
+	echo "Serial: " . $combined['serial'] . "<br />";
+	echo "Eth0 Address: " . $combined['eth0Addr'] . "<br />";
+	echo "Wlan0 Address: " . $combined['wlan0Addr'] . "<br /><br />";
+	echo "Playlist: " . $combined['playlistName'] . "<br />";
+	echo "Sequence: " . $combined['sequence'] . "<br />";
+	echo "Seconds Elapsed: " . $combined['secondsElapsed'] . "<br />";
+	echo "Seconds Remaining: " . $combined['secondsRemaining'] . "<br /><br />";
+	echo "Device Time: " . date('Y-m-d h:i:sa',$combined['time']) . " (" . $combined['time'] . ")";	
 
 ?>
