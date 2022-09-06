@@ -25,7 +25,7 @@
 		$ipLineE = explode(' ',trim($resultArrayE[0]));
 		$eth0Addr = $ipLineE[1];
 		
-		// eth0 ip address
+		// wlan0 ip address
 		$wlan0Addr = "0.0.0.0";
 		exec("/sbin/ifconfig wlan0 | grep 'inet '", $resultArrayW);
 		$ipLineW = explode(' ',trim($resultArrayW[0]));
@@ -59,14 +59,14 @@
 		$data = $_SERVER['PHP_SELF']." : ".$data;		
 		$logWrite= fopen($logFile, "a") or die("Unable to open file!");
 		fwrite($logWrite, date('Y-m-d h:i:s A',time()).": ".$data."\n");
-		fclose($logWrite);
-		
+		fclose($logWrite);		
 	}
 	
 	function getCurrentPlayingData() {
 		$ds = getDeviceStatus();
 		$j = json_decode($ds,true);
 		$response = array(
+			'mode' => trim($j['mode']),
 			'playlistName' => trim($j['current_playlist']['playlist']),
 			'sequenceName' => trim($j['current_sequence']),
 			'secondsElapsed' => trim($j['seconds_elapsed']),

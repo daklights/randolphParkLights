@@ -16,11 +16,15 @@
 	echo "Serial: " . $combined['serial'] . "<br />";
 	echo "Eth0 Address: " . $combined['eth0Addr'] . "<br />";
 	echo "Wlan0 Address: " . $combined['wlan0Addr'] . "<br /><br />";
-	echo "Playlist: " . $combined['playlistName'] . "<br />";
-	echo "Sequence: " . $combined['sequenceName'] . "<br />";
-	echo "Seconds Elapsed: " . $combined['secondsElapsed'] . "<br />";
-	echo "Seconds Remaining: " . $combined['secondsRemaining'] . "<br />";
-	echo "Sequence Started: " . date('Y-m-d h:i:sa',$combined['sequenceStarted']) . " (" . $combined['sequenceStarted'] . ")<br /><br />";
+	
+	if ($combined['mode'] == "player") {
+		echo "Playlist: " . $combined['playlistName'] . "<br />";
+		echo "Sequence: " . $combined['sequenceName'] . "<br />";
+		echo "Seconds Elapsed: " . $combined['secondsElapsed'] . "<br />";
+		echo "Seconds Remaining: " . $combined['secondsRemaining'] . "<br />";
+		echo "Sequence Started: " . date('Y-m-d h:i:sa',$combined['sequenceStarted']) . " (" . $combined['sequenceStarted'] . ")<br /><br />";
+	}
+	
 	echo "Device Time: " . date('Y-m-d h:i:sa',$combined['time']) . "<br />";
 	echo "Device Time Epoch: " . $combined['time'] . "<br /><br />";
 	echo "Latest Remote Sync Result: " . $pluginSettings['latestRemoteSyncResult'];
