@@ -21,8 +21,10 @@
 			$reportedSequenceStarted = $pluginSettings['reportedSequenceStarted'];
 			
 			$loopTrigger = false;
-			if (abs($reportedSequenceStarted - $playingData['sequenceStarted']) > 2) {
-				$loopTrigger = true;
+			if (trim($playingData['sequenceName']) != "") {
+				if (abs($reportedSequenceStarted - $playingData['sequenceStarted']) > 2) {
+					$loopTrigger = true;
+				}
 			}
 			
 			if ($reportedSequenceName != $playingData['sequenceName'] || $reportedPlaylistName != $playingData['playlistName'] || $loopTrigger) {
