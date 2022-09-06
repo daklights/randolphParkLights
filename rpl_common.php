@@ -71,7 +71,7 @@
 			'sequenceName' => trim($j['current_sequence']),
 			'secondsElapsed' => trim($j['seconds_elapsed']),
 			'secondsRemaining' => trim($j['seconds_remaining']),
-			'sequenceStarted' => trim($j['scheduler']['currentPlaylist']['currentTime'] - $j['seconds_elapsed']),
+			'sequenceStarted' => trim(time() - $j['seconds_elapsed']),
 			'time' => time()
 		);
 		return json_encode($response);
