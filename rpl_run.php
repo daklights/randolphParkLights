@@ -15,9 +15,10 @@
 		$combined = json_encode(array_merge(json_decode($deviceData,true),$playingData));
 		$reportedSequenceName = $pluginSettings['reportedSequenceName'];
 		$reportedPlaylistName = $pluginSettings['reportedPlaylistName'];
+		$reportedSequenceStarted = $pluginSettings['reportedSequenceStarted'];
 		
-		if ($reportedSequenceName != $playingData['sequenceName'] || $reportedPlaylistName != $playingData['playlistName']) {
-			// song or playlist has changed
+		if ($reportedSequenceName != $playingData['sequenceName'] || $reportedPlaylistName != $playingData['playlistName'] || $reportedSequenceStarted != $playingData['sequenceStarted']) {
+			// song or playlist has changed (or looped if non-standard show)
 			logEntry("Change Detected: " . $playingData['sequenceName'] . " | " . $playingData['playlistName']);
 			$options = array (
 				'http' => array (
@@ -34,6 +35,7 @@
 				// remote success
 				WriteSettingToFile("reportedSequenceName",$playingData['sequenceName'],$pluginName);
 				WriteSettingToFile("reportedPlaylistName",$playingData['playlistName'],$pluginName);
+				WriteSettingToFile("reportedSequenceStarted",$playingData['sequenceStarted'],$pluginName);
 				$sleepDuration = 2;
 			} else {
 				// remote error
