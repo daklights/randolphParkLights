@@ -17,7 +17,12 @@
 		$reportedPlaylistName = $pluginSettings['reportedPlaylistName'];
 		$reportedSequenceStarted = $pluginSettings['reportedSequenceStarted'];
 		
-		if ($reportedSequenceName != $playingData['sequenceName'] || $reportedPlaylistName != $playingData['playlistName'] || $reportedSequenceStarted != $playingData['sequenceStarted']) {
+		$loopTrigger = false;
+		if (abs($reportedSequenceStarted - $playingData['sequenceStarted']) > 2) {
+			$loopTrigger = true;
+		}
+		
+		if ($reportedSequenceName != $playingData['sequenceName'] || $reportedPlaylistName != $playingData['playlistName'] || $loopTrigger) {
 			// song or playlist has changed (or looped if non-standard show)
 			logEntry("Change Detected: " . $playingData['sequenceName'] . " | " . $playingData['playlistName']);
 			$options = array (
