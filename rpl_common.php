@@ -66,7 +66,7 @@
 		$ds = getDeviceStatus();
 		$j = json_decode($ds,true);
 		$response = array(
-			'mode' => trim($j['mode']),
+			'mode' => trim($j['mode_name']),
 			'playlistName' => trim($j['current_playlist']['playlist']),
 			'sequenceName' => trim($j['current_sequence']),
 			'secondsElapsed' => trim($j['seconds_elapsed']),
