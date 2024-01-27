@@ -23,8 +23,10 @@
 		$eth0Addr = "0.0.0.0";
 		try {
 			exec("/sbin/ifconfig eth0 | grep 'inet '", $resultArrayE);
-			$ipLineE = explode(' ',trim($resultArrayE[0]));
-			$eth0Addr = $ipLineE[1];
+			if (count($resultArrayE)) {
+				$ipLineE = explode(' ',trim($resultArrayE[0]));
+				$eth0Addr = $ipLineE[1];
+			}
 		}
 		catch (Exception $e) {}
 		
@@ -32,8 +34,10 @@
 		$wlan0Addr = "0.0.0.0";
 		try {
 			exec("/sbin/ifconfig wlan0 | grep 'inet '", $resultArrayW);
-			$ipLineW = explode(' ',trim($resultArrayW[0]));
-			$wlan0Addr = $ipLineW[1];
+			if (count($resultArrayW)) {
+				$ipLineW = explode(' ',trim($resultArrayW[0]));
+				$wlan0Addr = $ipLineW[1];
+			}
 		}
 		catch (Exception $e) {}
 		
