@@ -79,9 +79,9 @@
 			'mode' => trim($j['mode_name']),
 			'playlistName' => trim($j['current_playlist']['playlist']),
 			'sequenceName' => trim($j['current_sequence']),
-			'secondsElapsed' => trim($j['seconds_elapsed']),
-			'secondsRemaining' => trim($j['seconds_remaining']),
-			'sequenceStarted' => trim(time() - $j['seconds_elapsed']),
+			'secondsElapsed' => (array_key_exists($j['seconds_elapsed']) ? trim($j['seconds_elapsed']), -1),
+			'secondsRemaining' => (array_key_exists($j['seconds_remaining']) ? trim($j['seconds_remaining']), -1),
+			'sequenceStarted' => (array_key_exists($j['seconds_elapsed']) ? trim(time() - $j['seconds_elapsed']), -1),
 			'time' => time()
 		);
 		return json_encode($response);
