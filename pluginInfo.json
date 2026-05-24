@@ -6,12 +6,12 @@
 	"homeURL": "https://github.com/daklights/randolphParkLights",
 	"srcURL": "https://github.com/daklights/randolphParkLights.git",
 	"bugURL": "https://github.com/daklights/randolphParkLights/issues",
+	"allowUpdates": 1,
 	"versions": [
 		{
 			"minFPPVersion": "5.0",
 			"maxFPPVersion": "0",
 			"branch": "master",
-			"allowUpdates": 1,
 			"sha": ""
 		}
 	]
