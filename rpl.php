@@ -31,7 +31,7 @@
 	
 ?>	
 <label>
-    <input type="checkbox" id="autoRefresh" checked>&nbsp;&nbsp;Automatically refresh every 10 seconds
+    <input type="checkbox" id="autoRefresh">&nbsp;&nbsp;Automatically refresh every 10 seconds
 </label>
 
 <script>
@@ -60,7 +60,4 @@
             stopRefresh();
         }
     });
-
-    // Start automatically since the checkbox is checked by default
-    startRefresh();
 </script>
