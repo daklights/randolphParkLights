@@ -8,18 +8,6 @@
 	$pluginConfigFile = $settings['configDirectory'] . "/plugin." .$pluginName;
 	$pluginSettings = parse_ini_file($pluginConfigFile);
 	
-	echo $logFile . "<br /><br />";
-	
-	logEntry("Sample test: " . time());
-	
-	echo "<pre>";
-	print_r($settings);
-	echo "</pre><br /><hr /><br />";
-	
-	echo "<pre>";
-	print_r($pluginSettings);
-	echo "</pre><br /><hr /><br />";
-
 	function getDeviceData() {
 		
 		// temperature
