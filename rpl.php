@@ -12,12 +12,11 @@
 	
 	echo "Randolph Park Lights Data Sync<br /><br />";
 	
-	echo "<h1>Device Information</h1><br />";
-	echo "Time: " . date('Y-m-d h:i:sa',$combined['time']) . " (" . $combined['time'] . ")<br />";
 	echo "Temp: " . round(((($combined['tempC']/1000)*(9/5))+32),2) . "<br />";
 	echo "Serial: " . $combined['serial'] . "<br />";
 	echo "Eth0 Address: " . $combined['eth0Addr'] . "<br />";
 	echo "Wlan0 Address: " . $combined['wlan0Addr'] . "<br /><br />";
+	echo "Time: " . date('Y-m-d h:i:sa',$combined['time']) . " (" . $combined['time'] . ")<br />";
 	
 	if ($combined['mode'] == "player") {
 		echo "Playlist: " . $combined['playlistName'] . "<br />";
