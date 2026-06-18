@@ -12,6 +12,8 @@
 	
 	echo "Randolph Park Lights Data Sync<br /><br />";
 	
+	echo "<h1>Device Information</h1><br />";
+	echo "Time: " . date('Y-m-d h:i:sa',$combined['time']) . " (" . $combined['time'] . ")<br />";
 	echo "Temp: " . round(((($combined['tempC']/1000)*(9/5))+32),2) . "<br />";
 	echo "Serial: " . $combined['serial'] . "<br />";
 	echo "Eth0 Address: " . $combined['eth0Addr'] . "<br />";
@@ -25,9 +27,9 @@
 		echo "Sequence Started: " . date('Y-m-d h:i:sa',$combined['sequenceStarted']) . " (" . $combined['sequenceStarted'] . ")<br /><br />";
 	}
 	
-	echo "Device Time: " . date('Y-m-d h:i:sa',$combined['time']) . "<br />";
-	echo "Device Time Epoch: " . $combined['time'] . "<br /><br />";
-	echo "Latest Remote Sync Result: " . $pluginSettings['latestRemoteSyncResult'] . "<br /><br />";
+	$lastSync = $pluginSettings['latestRemoteSyncResult'];
+	$lastSyncArray = explode(' ',$lastSync);
+	echo "Latest Remote Sync: " . $lastSync[0] . " " . date('Y-m-d h:i:sa',$lastSync[1]) . " (" . $lastSync[1] . ")<br /><br />";
 	
 ?>	
 <label>
