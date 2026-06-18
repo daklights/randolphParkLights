@@ -3,7 +3,7 @@
 	include_once "rpl_common.php";
 	
 	$pluginName = basename(dirname(__FILE__));
-	$pluginConfigFile = "/home/fpp/media/config/plugin." .$pluginName;
+	$pluginConfigFile = $settings['configDirectory'] . "/plugin." .$pluginName;
 	$pluginSettings = parse_ini_file($pluginConfigFile);
 	
 	$deviceData = getDeviceData();
@@ -31,7 +31,7 @@
 	
 ?>	
 <label>
-    <input type="checkbox" id="autoRefresh" checked> Automatically Refresh
+    <input type="checkbox" id="autoRefresh" checked>&nbsp;&nbsp;Automatically refresh every 10 seconds
 </label>
 
 <script>

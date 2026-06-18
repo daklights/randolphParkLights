@@ -3,10 +3,14 @@
 	include_once "/opt/fpp/www/common.php";
 	$pluginBaseUrl = "https://daklights.com/api/";
 	$pluginName = basename(dirname(__FILE__));
-	$pluginPath = "/home/fpp/media/plugins/".$pluginName."/";
-	$logFile = "/home/fpp/media/logs/".$pluginName.".log";
-	$pluginConfigFile = "/home/fpp/media/config/plugin." .$pluginName;
+	$pluginPath = $settings['pluginDirectory']."/".$pluginName."/";
+	$logFile = $settings['logDirectory']."/".$pluginName.".log";
+	$pluginConfigFile = $settings['configDirectory'] . "/plugin." .$pluginName;
 	$pluginSettings = parse_ini_file($pluginConfigFile);
+	
+	echo "<pre>";
+	print_r($settings);
+	echo "</pre><br /><br />";
 
 	function getDeviceData() {
 		
