@@ -29,7 +29,7 @@
 	
 	$lastSync = $pluginSettings['latestRemoteSyncResult'];
 	$lastSyncArray = explode(' ',$lastSync);
-	echo "Latest Remote Sync: " . $lastSync[0] . " " . date('Y-m-d h:i:sa',$lastSync[1]) . " (" . $lastSync[1] . ")<br /><br />";
+	echo "Latest Remote Sync: " . $lastSyncArray[0] . " " . date('Y-m-d h:i:sa',$lastSyncArray[1]) . " (" . $lastSyncArray[1] . ")<br /><br />";
 	
 ?>	
 <label>
