@@ -10,7 +10,11 @@
 	
 	echo "<pre>";
 	print_r($settings);
-	echo "</pre><br /><br />";
+	echo "</pre><br /><hr /><br />";
+	
+	echo "<pre>";
+	print_r($pluginSettings);
+	echo "</pre><br /><hr /><br />";
 
 	function getDeviceData() {
 		
