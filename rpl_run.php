@@ -29,7 +29,7 @@
 			
 			if ($reportedSequenceName != $playingData['sequenceName'] || $reportedPlaylistName != $playingData['playlistName'] || $loopTrigger) {
 				// song or playlist has changed (or looped if non-standard show)
-				//logEntry("Change Detected: " . $playingData['sequenceName'] . " | " . $playingData['playlistName']);
+				logEntry("Change Detected: " . $playingData['sequenceName'] . " | " . $playingData['playlistName']);
 				$options = array (
 					'http' => array (
 						'method' => 'POST',
@@ -49,9 +49,9 @@
 					$sleepDuration = 2;
 				} else {
 					// remote error
-					$sleepDuration = 1;
+					$sleepDuration = 2;
 				}
-				//logEntry("Remote Save: " . $result);
+				logEntry("Remote Sync: " . $result);
 			} else {
 				// song has not changed
 				$sleepDuration = 2;

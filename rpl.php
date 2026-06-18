@@ -29,11 +29,11 @@
 	
 	$lastSync = $pluginSettings['latestRemoteSyncResult'];
 	$lastSyncArray = explode(' ',$lastSync);
-	echo "Latest Remote Sync: " . $lastSyncArray[0] . " " . date('Y-m-d h:i:sa',$lastSyncArray[1]) . " (" . $lastSyncArray[1] . ")<br /><br />";
+	echo "Remote Sync: " . $lastSyncArray[0] . " " . date('Y-m-d h:i:sa',$lastSyncArray[1]) . " (" . $lastSyncArray[1] . ")<br /><br />";
 	
 ?>	
 <label>
-    <input type="checkbox" id="autoRefresh">&nbsp;&nbsp;Automatically Refresh
+    <input type="checkbox" id="autoRefresh">&nbsp;&nbsp;Automatically refresh every
 </label>
 
 <select id="refreshSeconds">
