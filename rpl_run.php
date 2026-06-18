@@ -9,6 +9,7 @@
 	logEntry("Base Url: " . $url);
 	
 	while ($doLoop) {
+		logEntry("Here: " . time());
 		$pluginSettings = parse_ini_file($pluginConfigFile);
 		$deviceData = getDeviceData();
 		$playingData = json_decode(getCurrentPlayingData(),true);
