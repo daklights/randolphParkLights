@@ -1,5 +1,7 @@
 <?php
 
+	sleep(15);
+
 	include_once "/home/fpp/media/plugins/randolphParkLights/rpl_common.php";
 	
 	$doLoop = true;
