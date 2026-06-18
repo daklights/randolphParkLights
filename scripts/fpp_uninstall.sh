@@ -1,6 +1,11 @@
 #!/bin/bash
 
-echo "$(date '+%Y-%m-%d %H:%M:%S'): FPP_UNINSTALL BEGIN" >> "$LOGFILE"
+# Common variables
+PLUGINDIR=/home/fpp/media/plugins/randolphParkLights
+LOGFILE=/home/fpp/media/logs/randolphParkLights.log
+
+# Log begin
+echo "$(date '+%Y-%m-%d %H:%M:%S'): FPP_UNINSTALL BEGIN" | tee -a "$LOGFILE"
 
 # Source FPP common functions if available
 if [ -f "${FPPDIR}/scripts/common" ]; then
@@ -11,7 +16,9 @@ fi
 
 # Set reboot flag if setSetting function is available
 if command -v setSetting &> /dev/null; then
+	echo "$(date '+%Y-%m-%d %H:%M:%S'): Reboot required to complete plugin uninstallation" | tee -a "$LOGFILE"
     setSetting rebootFlag 1
 fi
 
-echo "$(date '+%Y-%m-%d %H:%M:%S'): FPP_UNINSTALL COMPLETE" >> "$LOGFILE"
+# Log complete
+echo "$(date '+%Y-%m-%d %H:%M:%S'): FPP_UNINSTALL COMPLETE" | tee -a "$LOGFILE"
