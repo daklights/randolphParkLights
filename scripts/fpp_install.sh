@@ -1,5 +1,7 @@
 #!/bin/bash
 
-#sed -i -e "s/^restartFlag .*/restartFlag = 1/" ${FPPHOME}/media/settings
+${FPPDIR}/scripts/ManageApacheContentPolicy.sh add connect-src https://dakjr.com 2>/dev/null || true
+
+setSetting restartFlag 1
 
 #fpp_install
