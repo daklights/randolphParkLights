@@ -4,9 +4,6 @@
 PLUGINDIR=/home/fpp/media/plugins/randolphParkLights
 LOGFILE=/home/fpp/media/logs/randolphParkLights.log
 
-# Log begin
-echo "$(date '+%Y-%m-%d %H:%M:%S'): FPP_INSTALL BEGIN" | tee -a "$LOGFILE"
-
 # Source FPP common functions if available
 if [ -f "${FPPDIR}/scripts/common" ]; then
     . ${FPPDIR}/scripts/common
@@ -27,6 +24,3 @@ if command -v setSetting &> /dev/null; then
 	echo "$(date '+%Y-%m-%d %H:%M:%S'): Reboot required to complete plugin installation" | tee -a "$LOGFILE"
     setSetting rebootFlag 1
 fi
-
-# Log complete
-echo "$(date '+%Y-%m-%d %H:%M:%S'): FPP_INSTALL COMPLETE" | tee -a "$LOGFILE"
