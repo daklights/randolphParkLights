@@ -1,16 +1,29 @@
 #!/bin/bash
 
+echo "$(date '+%Y-%m-%d %H:%M:%S'): FPP_INSTALL BEGIN" >> "$LOGFILE"
+
+# Source FPP common functions if available
+if [ -f "${FPPDIR}/scripts/common" ]; then
+    . ${FPPDIR}/scripts/common
+elif [ -f "/opt/fpp/scripts/common" ]; then
+    . /opt/fpp/scripts/common
+fi
+
+# Common variables
 PLUGINDIR=/home/fpp/media/plugins/randolphParkLights
 LOGFILE=/home/fpp/media/logs/randolphParkLights.log
 
-echo "$(date '+%Y-%m-%d %H:%M:%S'): FPP_INSTALL BEGIN"
-echo "$(date '+%Y-%m-%d %H:%M:%S'): FPP_INSTALL BEGIN" >> "$LOGFILE"
+# Ensure log file exists
+if [ ! -f "$LOGFILE" ]; then
+    touch "$LOGFILE"
+    chown fpp:fpp "$LOGFILE"
+    chmod 664 "$LOGFILE"
+    echo "Created log file: $LOGFILE"
+fi
 
-#${FPPDIR}/scripts/ManageApacheContentPolicy.sh add connect-src https://dakjr.com 2>/dev/null || true
+# Set reboot flag if setSetting function is available
+if command -v setSetting &> /dev/null; then
+    setSetting rebootFlag 1
+fi
 
-#setSetting restartFlag 1
-
-echo "$(date '+%Y-%m-%d %H:%M:%S'): FPP_INSTALL COMPLETE"
 echo "$(date '+%Y-%m-%d %H:%M:%S'): FPP_INSTALL COMPLETE" >> "$LOGFILE"
-
-#fpp_install

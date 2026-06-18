@@ -1,7 +1,5 @@
 <?php
 
-	sleep(15);
-
 	include_once "/home/fpp/media/plugins/randolphParkLights/rpl_common.php";
 	
 	$doLoop = true;
@@ -31,7 +29,7 @@
 			
 			if ($reportedSequenceName != $playingData['sequenceName'] || $reportedPlaylistName != $playingData['playlistName'] || $loopTrigger) {
 				// song or playlist has changed (or looped if non-standard show)
-				logEntry("Change Detected: " . $playingData['sequenceName'] . " | " . $playingData['playlistName']);
+				//logEntry("Change Detected: " . $playingData['sequenceName'] . " | " . $playingData['playlistName']);
 				$options = array (
 					'http' => array (
 						'method' => 'POST',
@@ -53,7 +51,7 @@
 					// remote error
 					$sleepDuration = 1;
 				}
-				logEntry("Remote Save: " . $result);
+				//logEntry("Remote Save: " . $result);
 			} else {
 				// song has not changed
 				$sleepDuration = 2;
