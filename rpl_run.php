@@ -77,15 +77,16 @@
 					$result = "ERROR " . time();
 				}
 
-				WriteSettingToFile("latestRemoteSyncResult", $result, $pluginName);
 				if (stripos($result,'SUCCESS') !== false) {
 					// remote success
-					WriteSettingToFile("reportedSequenceName",$playingData['sequenceName'],$pluginName);
-					WriteSettingToFile("reportedPlaylistName",$playingData['playlistName'],$pluginName);
-					WriteSettingToFile("reportedSequenceStarted",$playingData['sequenceStarted'],$pluginName);
+					WriteSettingToFile("latestRemoteSyncResult", $result, $pluginName);
+					WriteSettingToFile("reportedSequenceName", $playingData['sequenceName'], $pluginName);
+					WriteSettingToFile("reportedPlaylistName", $playingData['playlistName'], $pluginName);
+					WriteSettingToFile("reportedSequenceStarted", $playingData['sequenceStarted'], $pluginName);
 					$sleepDuration = 2;
 				} else {
 					// remote error
+					WriteSettingToFile("latestRemoteSyncResult", "ERROR " . time(), $pluginName);
 					$sleepDuration = 60;
 				}
 				logEntry("Remote Sync: " . $result);
