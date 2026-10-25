@@ -9,7 +9,18 @@
 	logEntry("Base Url: " . $url);
 	
 	while ($doLoop) {
+		// Reload plugin settings on every iteration
+		clearstatcache(true, $pluginConfigFile);
 		$pluginSettings = parse_ini_file($pluginConfigFile);
+
+		// Sync is enabled by default if setting doesn't exist
+		$syncEnabled = !isset($pluginSettings['syncEnabled']) || (int)$pluginSettings['syncEnabled'] === 1;
+
+		if (!$syncEnabled) {
+			sleep(60);
+			continue;
+		}
+
 		$deviceData = getDeviceData();
 		$playingData = json_decode(getCurrentPlayingData(),true);
 		$combined = json_encode(array_merge(json_decode($deviceData,true),$playingData));

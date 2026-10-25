@@ -2,6 +2,33 @@
 
 	include_once "rpl_common.php";
 	
+	// Handle AJAX request to enable/disable remote syncing
+	if ($_SERVER['REQUEST_METHOD'] === 'POST'
+		&& isset($_POST['action'])
+		&& $_POST['action'] === 'setSyncEnabled') {
+
+		header('Content-Type: application/json');
+
+		$pluginName = basename(dirname(__FILE__));
+
+		if (!isset($_POST['enabled'])
+			|| !in_array($_POST['enabled'], array('0', '1'), true)) {
+			http_response_code(400);
+			echo json_encode(array('success' => false));
+			exit;
+		}
+
+		$enabled = $_POST['enabled'];
+
+		WriteSettingToFile("syncEnabled", $enabled, $pluginName);
+
+		echo json_encode(array(
+			'success' => true,
+			'syncEnabled' => (int)$enabled
+		));
+		exit;
+	}
+	
 	$pluginName = basename(dirname(__FILE__));
 	$pluginConfigFile = $settings['configDirectory'] . "/plugin." .$pluginName;
 	$pluginSettings = parse_ini_file($pluginConfigFile);
@@ -30,7 +57,20 @@
 	$lastSyncArray = explode(' ',$lastSync);
 	echo "Remote Sync: " . $lastSyncArray[0] . " " . date('Y-m-d h:i:sa',$lastSyncArray[1]) . " (" . $lastSyncArray[1] . ")<br /><br />";
 	
-?>	
+	$syncEnabled = !isset($pluginSettings['syncEnabled'])
+		|| (int)$pluginSettings['syncEnabled'] === 1;
+?>
+
+<div style="margin-bottom: 20px;">
+	<label>
+		<input type="checkbox" id="syncEnabled" <?php echo $syncEnabled ? 'checked' : ''; ?>>
+		<strong>Enable Remote Sync</strong>
+	</label>
+	<span id="syncStatus" style="margin-left: 10px; font-weight: bold;">
+		<?php echo $syncEnabled ? 'ENABLED' : 'DISABLED'; ?>
+	</span>
+</div>
+	
 <label>
     <input type="checkbox" id="autoRefresh">&nbsp;&nbsp;Automatically refresh every
 </label>
@@ -49,6 +89,54 @@
 <div id="refreshCountdownText" style="margin-top: 4px; display: none;"></div>
 
 <script>
+	const syncToggle = document.getElementById("syncEnabled");
+	const syncStatus = document.getElementById("syncStatus");
+
+	function updateSyncStatus(enabled) {
+		syncStatus.textContent = enabled ? "ENABLED" : "DISABLED";
+		syncStatus.style.color = enabled ? "#4caf50" : "#f44336";
+	}
+
+	updateSyncStatus(syncToggle.checked);
+
+	syncToggle.addEventListener("change", async function () {
+		const enabled = syncToggle.checked;
+		syncToggle.disabled = true;
+		syncStatus.textContent = "Saving...";
+
+		try {
+			const response = await fetch(window.location.href, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/x-www-form-urlencoded"
+				},
+				body: new URLSearchParams({
+					action: "setSyncEnabled",
+					enabled: enabled ? "1" : "0"
+				})
+			});
+
+			if (!response.ok) {
+				throw new Error("HTTP " + response.status);
+			}
+
+			const result = await response.json();
+
+			if (!result.success) {
+				throw new Error("Unable to save setting");
+			}
+
+			updateSyncStatus(result.syncEnabled === 1);
+
+		} catch (error) {
+			syncToggle.checked = !enabled;
+			updateSyncStatus(syncToggle.checked);
+			alert("Failed to update sync setting: " + error.message);
+		} finally {
+			syncToggle.disabled = false;
+		}
+	});
+
     const checkbox = document.getElementById("autoRefresh");
     const dropdown = document.getElementById("refreshSeconds");
     const progressContainer = document.getElementById("refreshProgressContainer");
