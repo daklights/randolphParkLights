@@ -86,7 +86,6 @@
 					$sleepDuration = 2;
 				} else {
 					// remote error
-					logEntry("Remote Sync FAILED: " . $result);
 					WriteSettingToFile("latestRemoteSyncResult", "ERROR " . time(), $pluginName);
 					$sleepDuration = 60;
 				}
