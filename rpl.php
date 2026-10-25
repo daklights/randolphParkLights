@@ -27,8 +27,12 @@
 	}
 	
 	$lastSync = $pluginSettings['latestRemoteSyncResult'];
-	$lastSyncArray = explode(' ',$lastSync);
-	echo "Remote Sync: " . $lastSyncArray[0] . " " . date('Y-m-d h:i:sa',$lastSyncArray[1]) . " (" . $lastSyncArray[1] . ")<br /><br />";
+	if ($lastSync !== "") {
+		$lastSyncArray = explode(' ',$lastSync);
+		echo "Latest Remote Sync: [" . $lastSyncArray[0] . "] [" . date('Y-m-d h:i:sa',$lastSyncArray[1]) . "] [" . $lastSyncArray[1] . "]<br /><br />";
+	} else {
+		echo "Latest Remote Sync: [UNAVAILABLE]<br /><br />";
+	}
 	
 	$syncEnabled = !isset($pluginSettings['syncEnabled'])
 		|| (int)$pluginSettings['syncEnabled'] === 1;
