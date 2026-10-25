@@ -14,7 +14,11 @@
 		$pluginSettings = parse_ini_file($pluginConfigFile);
 
 		// Sync is enabled by default if setting doesn't exist
-		$syncEnabled = !isset($pluginSettings['syncEnabled']) || (int)$pluginSettings['syncEnabled'] === 1;
+		$syncEnabled = true;
+		if (isset($pluginSettings['syncEnabled'])) {
+			$syncValue = trim((string)$pluginSettings['syncEnabled'], " \t\n\r\0\x0B\"'");
+			$syncEnabled = ($syncValue === '1');
+		}
 
 		if (!$syncEnabled) {
 			sleep(60);

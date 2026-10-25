@@ -36,30 +36,30 @@
 
 <div style="margin-bottom: 20px;">
 	<label>
-		<input type="checkbox" id="syncEnabled" <?php echo $syncEnabled ? 'checked' : ''; ?>>
-		<strong>Enable Remote Sync</strong>
+		<input type="checkbox" id="syncEnabled" <?php echo $syncEnabled ? 'checked' : ''; ?>>&nbsp;&nbsp;Enable Remote Sync
 	</label>
 	<span id="syncStatus" style="margin-left: 10px; font-weight: bold;">
 		<?php echo $syncEnabled ? 'ENABLED' : 'DISABLED'; ?>
 	</span>
 </div>
-	
-<label>
-    <input type="checkbox" id="autoRefresh">&nbsp;&nbsp;Automatically refresh every
-</label>
 
-<select id="refreshSeconds">
-    <option value="10">10 seconds</option>
-    <option value="20">20 seconds</option>
-    <option value="30">30 seconds</option>
-    <option value="60">60 seconds</option>
-</select>
-
-<div id="refreshProgressContainer" style="width: 300px; height: 18px; border: 1px solid #999; margin-top: 8px; display: none;">
-    <div id="refreshProgressBar" style="height: 100%; width: 100%; background: #4caf50;"></div>
+<div style="margin-bottom: 20px;">	
+	<label>
+		<input type="checkbox" id="autoRefresh">&nbsp;&nbsp;Automatically refresh every
+	</label>
+	<select id="refreshSeconds">
+		<option value="10">10 seconds</option>
+		<option value="20">20 seconds</option>
+		<option value="30">30 seconds</option>
+		<option value="60">60 seconds</option>
+	</select>
+	<div style="margin-left: 20px;">
+		<div id="refreshProgressContainer" style="width: 300px; height: 18px; border: 1px solid #999; margin-top: 8px; display: none;">
+			<div id="refreshProgressBar" style="height: 100%; width: 100%; background: #4caf50;"></div>
+		</div>
+		<div id="refreshCountdownText" style="margin-top: 4px; display: none;"></div>
+	</div>
 </div>
-
-<div id="refreshCountdownText" style="margin-top: 4px; display: none;"></div>
 
 <script>
 	const syncToggle = document.getElementById("syncEnabled");
@@ -86,7 +86,7 @@
 					headers: {
 						"Content-Type": "application/json"
 					},
-					body: JSON.stringify(enabled ? "1" : "0")
+					body: enabled ? "1" : "0"
 				}
 			);
 
