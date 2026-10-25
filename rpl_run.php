@@ -21,8 +21,11 @@
 		}
 
 		if (!$syncEnabled) {
+			WriteSettingToFile("skippingThisRun",time() . " > true",$pluginName);
 			sleep(60);
 			continue;
+		} else {
+			WriteSettingToFile("skippingThisRun",time() . " > false",$pluginName);
 		}
 
 		$deviceData = getDeviceData();
@@ -50,12 +53,31 @@
 						'method' => 'POST',
 						'content' => $combined,
 						'header' => "Content-Type: application/json; charset=UTF-8\r\n" .
-									"Accept: application/json\r\n"
+									"Accept: application/json\r\n",
+						'timeout' => 5,
+						'ignore_errors' => true
 					)
 				);
 				$context = stream_context_create($options);
-				$result = file_get_contents($url, false, $context);
-				WriteSettingToFile("latestRemoteSyncResult",$result,$pluginName);
+				
+				// Suppress PHP warnings and capture the error ourselves
+				$errorBefore = error_get_last();
+				$startTime = microtime(true);
+
+				$result = @file_get_contents($url, false, $context);
+				$elapsed = round(microtime(true) - $startTime, 2);
+				if ($result === false) {
+					$error = error_get_last();
+					$errorMessage = ($error !== null && $error !== $errorBefore) ? $error['message'] : 'Unknown connection error';
+					if (stripos($errorMessage, 'timed out') !== false) {
+						logEntry("Remote Sync TIMEOUT after {$elapsed} seconds: {$url}");
+					} else {
+						logEntry("Remote Sync FAILED after {$elapsed} seconds: {$errorMessage}");
+					}
+					$result = "ERROR " . time();
+				}
+
+				WriteSettingToFile("latestRemoteSyncResult", $result, $pluginName);
 				if (stripos($result,'SUCCESS') !== false) {
 					// remote success
 					WriteSettingToFile("reportedSequenceName",$playingData['sequenceName'],$pluginName);
@@ -64,7 +86,7 @@
 					$sleepDuration = 2;
 				} else {
 					// remote error
-					$sleepDuration = 2;
+					$sleepDuration = 60;
 				}
 				logEntry("Remote Sync: " . $result);
 			} else {
