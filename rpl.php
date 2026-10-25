@@ -3,9 +3,7 @@
 	include_once "rpl_common.php";
 	
 	// Handle AJAX request to enable/disable remote syncing
-	if ($_SERVER['REQUEST_METHOD'] === 'POST'
-		&& isset($_POST['action'])
-		&& $_POST['action'] === 'setSyncEnabled') {
+	if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'setSyncEnabled') {
 
 		header('Content-Type: application/json');
 
@@ -120,7 +118,20 @@
 				throw new Error("HTTP " + response.status);
 			}
 
-			const result = await response.json();
+			const responseText = await response.text();
+
+			console.log("Sync toggle response:", responseText);
+
+			let result;
+
+			try {
+				result = JSON.parse(responseText);
+			} catch (error) {
+				throw new Error(
+					"Server returned invalid JSON: " +
+					responseText.substring(0, 300)
+				);
+			}
 
 			if (!result.success) {
 				throw new Error("Unable to save setting");
