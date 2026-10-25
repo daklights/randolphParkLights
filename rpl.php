@@ -103,7 +103,7 @@
 		syncStatus.textContent = "Saving...";
 
 		try {
-			const response = await fetch(window.location.href, {
+			const response = await fetch("/api/plugin/randolphParkLights/rpl_save_setting.php", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/x-www-form-urlencoded"
